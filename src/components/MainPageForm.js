@@ -37,9 +37,9 @@ export default function MainPageForm(props){
         <div className = "mainpage-form">
             <br></br>
             <p>
-            Balance so far:
+            Money spent so far:
            </p>
-            {sum}
+            {sum}$
             <p> Add Expense Here: </p>
             
             <form className="expense-form" onSubmit={handleSubmit}>
