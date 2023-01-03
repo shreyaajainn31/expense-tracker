@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 
-import Balance from "./BalanceForm";
+import Balance from "../Balance/BalanceForm";
 
-export default function MainPageForm(props){
+export default function ExpenseForm(props){
 
     const [category, setCategory] = useState('')
     const [expense, setExpense] = useState('')
@@ -11,6 +11,7 @@ export default function MainPageForm(props){
     function returnExpense(){
         return expense;
     }
+    
     const handleCategoryChange = e => {
         setCategory(e.target.value);
 
