@@ -13,3 +13,18 @@
 .profit{
     margin-top: 2rem;
 }
+
+.limit-exceed {
+    color: red;
+}
+.limit-not-exceed{
+    color: green;
+}
+
+.mainpage-form input{
+    border-radius: 10px;
+  background: lightpink;
+  padding: 20px;
+  width: 200px;
+  height: 1px;
+}
