@@ -23,8 +23,13 @@
 
 .mainpage-form input{
     border-radius: 10px;
-  background: lightpink;
-  padding: 20px;
-  width: 200px;
-  height: 1px;
+    background: lightpink;
+    padding: 10px;
+    width: 200px;
+    height: 1px;
+}
+
+.mainpage-form button{
+    border-radius: 10px;
+
 }

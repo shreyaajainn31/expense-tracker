@@ -10,26 +10,34 @@ export default function ExpenseForm(props){
     const [balance, setBalance] = useState('')
     const [updateBalance, setUpdateBalance] = useState(0)
     const [updateExpense, setUpdateExpense] = useState('')
-    var finalExpense = 0;
+    const [displayExpenditures, setDisplayExpenditures] = useState({
+        category:'',
+        expense:''
+    })
+
     var goodMessage = "You are good to go!! ";
+   
     const handleBalanceChange = e => {
         setBalance(e.target.value)
     }
+   
     const changeBalance = e => {
         e.preventDefault();
         setUpdateBalance(balance)
+        if(expense > balance){
+            setMessage("Slow down a little...")
+        }
+        if(expense <= balance){
+            setMessage("You are good to go!! ")
+        }
     }
+   
     const handleBalanceSubmit = e => {
         e.preventDefault();
         setBalance('');
         setUpdateBalance('')
 
-        if(updateExpense > updateBalance){
-            setMessage("Slow down a little...")
-        }
-        if(updateExpense <= updateBalance){
-            setMessage("You are good to go!! ")
-        }
+      
     }
    
     const handleCategoryChange = e => {
@@ -46,6 +54,7 @@ export default function ExpenseForm(props){
         setExpense('');
     };
 
+
     const addExpense = balance => {
         let inputSum = parseInt(expense)
         if(isNaN(inputSum)){
@@ -53,14 +62,10 @@ export default function ExpenseForm(props){
             return
         }
         var finalSum = sum + parseInt(expense);
-        finalExpense = finalSum
         var finalBalance = parseInt(updateBalance);
         setSum(finalSum);
         setUpdateExpense(finalSum);
-        console.log("balance is: ", balance);
-        console.log("expense is: ", finalSum);
         if(finalSum > finalBalance){
-            console.log("Yes.. expense is greater")
             setMessage("Slow down a little...")
         }
         if(finalSum <= finalBalance) {
@@ -126,9 +131,9 @@ export default function ExpenseForm(props){
             <div  className = "mainpage-form">
             <h2> Summary of Expenses </h2>
             
-            <p> Balance: {balance}$</p>
+            <p> Balance: {updateBalance}$</p>
             
-            <p> Expense: {updateExpense}$ </p>
+            <p className = {message === goodMessage ? 'limit-not-exceed' : 'limit-exceed'}> Expense: {updateExpense}$ </p>
 
             <p className = {message === goodMessage ? 'limit-not-exceed' : 'limit-exceed'}> {message} </p> 
 
