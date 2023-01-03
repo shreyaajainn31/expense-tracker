@@ -1,15 +1,20 @@
 import React, {useState} from "react";
 
+import Balance from "./BalanceForm";
+
 export default function MainPageForm(props){
 
     const [category, setCategory] = useState('')
     const [expense, setExpense] = useState('')
     const [sum, setSum] = useState(0)
+    
+    function returnExpense(){
+        return expense;
+    }
     const handleCategoryChange = e => {
         setCategory(e.target.value);
 
     }
-
     const handleExpenseChange = e => {
         setExpense(e.target.value);
     }
@@ -21,25 +26,24 @@ export default function MainPageForm(props){
     };
 
     const addExpense = balance => {
-        let inputSum = parseInt(expense);
-        
+        let inputSum = parseInt(expense)
         if(isNaN(inputSum)){
             setSum(sum);
             return
         }
-    
+
         setSum(sum + parseInt(expense));
     }
 
     return (
 
-        <div className = "mainpage-form">
-            <br></br>
-            <p>
+        <div className="mainpage">
+            <div className = "mainpage-form">
+            <h2>
             Money spent so far:
-           </p>
+           </h2>
             {sum}$
-            <p> Add Expense Here: </p>
+            <h2> Add Expense Here: </h2>
             
             <form className="expense-form" onSubmit={handleSubmit}>
                 <input 
@@ -70,7 +74,7 @@ export default function MainPageForm(props){
             
                 > Enter </button>
             </form>
-
+            </div>
         </div>
-    );
+    )
 }
