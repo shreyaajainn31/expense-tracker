@@ -12,7 +12,6 @@ export default function MainPageForm(props){
 
     const handleExpenseChange = e => {
         setExpense(e.target.value);
-        console.log(expense);
     }
 
     const handleSubmit = e => {
