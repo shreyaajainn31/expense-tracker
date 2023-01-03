@@ -1,12 +1,10 @@
 import React from "react";
+import MainPageForm from "./MainPageForm";
 
 export default function MainPageBalance(){
     return (
         <div className = "mainpage-balance">
-           <p>
-            Balance so far:
-            
-           </p>
+           
         </div>
     );
 }

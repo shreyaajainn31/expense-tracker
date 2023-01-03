@@ -2,21 +2,44 @@ import React, {useState} from "react";
 
 export default function MainPageForm(props){
 
-    const [input, setInput] = useState('')
+    const [category, setCategory] = useState('')
+    const [expense, setExpense] = useState('')
+    const [sum, setSum] = useState(0)
+    const handleCategoryChange = e => {
+        setCategory(e.target.value);
 
-    const handleChange = e => {
-        setInput(e.target.value);
     }
+
+    const handleExpenseChange = e => {
+        setExpense(e.target.value);
+        console.log(expense);
+    }
+
     const handleSubmit = e => {
         e.preventDefault();
-        setInput('');
+        setCategory('');
+        setExpense('');
     };
+
+    const addExpense = balance => {
+        let inputSum = parseInt(expense);
+        
+        if(isNaN(inputSum)){
+            setSum(sum);
+            return
+        }
+    
+        setSum(sum + parseInt(expense));
+    }
 
     return (
 
         <div className = "mainpage-form">
             <br></br>
-        
+            <p>
+            Balance so far:
+           </p>
+            {sum}
             <p> Add Expense Here: </p>
             
             <form className="expense-form" onSubmit={handleSubmit}>
@@ -25,20 +48,28 @@ export default function MainPageForm(props){
                 name = "category"
                 placeholder="Enter category"
                 className = "category-input"
-                onChange={handleChange}
-
+                onChange={handleCategoryChange}
+                value = {category}
                 />
-                <button className="category-button"> Enter Category</button>
+               
+                <br></br>
 
                 <input 
                 type = "text" 
                 name = "money-spent"
+                id = "num"
                 placeholder="Enter money spent"
                 className = "money-spent-input"
-                onChange={handleChange}
+                onChange={handleExpenseChange}
+                value = {expense}
 
                 />
-                <button className="money-spent-button"> Enter Money Spent</button>
+
+                <br></br>
+
+                <button className="money-spent-button" onClick={addExpense}
+            
+                > Enter </button>
             </form>
 
         </div>
