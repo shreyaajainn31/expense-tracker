@@ -93,22 +93,10 @@ export default function ExpenseForm(props){
         if(finalSum <= finalBalance) {
             setMessage("You are good to go!! ")
         }
-
-        
-
         const expenditureObject = {};
         expenditureObject.oCategory = category;
         expenditureObject.oExpense = expense;
         expenditureArray.push(expenditureObject);
-    }
-    function DisplayExpenditures(){
-        for(let i = 0; i<expenditureArray.length;i++){
-            <div>
-            <p> {expenditureArray[i].oCategory}</p>
-            <p> {expenditureArray[i].oExpense}</p>
-            </div>
-        }
-        
     }
     return (
 
