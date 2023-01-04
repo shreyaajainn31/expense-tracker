@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-
+export let expenditureArray = []
 export default function ExpenseForm(props){
 
     const [category, setCategory] = useState('')
@@ -10,10 +10,12 @@ export default function ExpenseForm(props){
     const [balance, setBalance] = useState('')
     const [updateBalance, setUpdateBalance] = useState(0)
     const [updateExpense, setUpdateExpense] = useState('')
-    const [displayExpenditures, setDisplayExpenditures] = useState({
-        category:'',
-        expense:''
+    const expenditureObject = useState({
+        oCategory:'',
+        oExpense:''
     })
+    const [state,setState] = useState(expenditureArray);
+    
 
     var goodMessage = "You are good to go!! ";
    
@@ -54,6 +56,26 @@ export default function ExpenseForm(props){
         setExpense('');
     };
 
+    function Print(){
+      return(
+
+        expenditureArray.map((item) =>
+        <table className="table">
+
+            <tr>
+            <td>
+                {item.oCategory}
+            </td>
+            <td>
+                {item.oExpense}$
+            </td>
+            </tr>
+            
+        </table>
+
+    )
+      )
+    }
 
     const addExpense = balance => {
         let inputSum = parseInt(expense)
@@ -71,8 +93,23 @@ export default function ExpenseForm(props){
         if(finalSum <= finalBalance) {
             setMessage("You are good to go!! ")
         }
-    }
 
+        
+
+        const expenditureObject = {};
+        expenditureObject.oCategory = category;
+        expenditureObject.oExpense = expense;
+        expenditureArray.push(expenditureObject);
+    }
+    function DisplayExpenditures(){
+        for(let i = 0; i<expenditureArray.length;i++){
+            <div>
+            <p> {expenditureArray[i].oCategory}</p>
+            <p> {expenditureArray[i].oExpense}</p>
+            </div>
+        }
+        
+    }
     return (
 
         <div className="mainpage">
@@ -138,6 +175,18 @@ export default function ExpenseForm(props){
             <p className = {message === goodMessage ? 'limit-not-exceed' : 'limit-exceed'}> {message} </p> 
 
             </div>
+
+            <div>
+            <h2> These are your expenses </h2>
+            <table class = "table">
+                <tr>
+                    <th>Category</th>
+                    <th>Expense</th>
+                </tr>
+            </table>
+            <Print />
+            </div>
+
         </div>
     )
 }
